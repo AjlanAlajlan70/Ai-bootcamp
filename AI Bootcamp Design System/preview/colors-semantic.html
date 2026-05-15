@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .ex {
+    background: #2B1D18;
+    border: 1px solid #3D2B23;
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .pill {
+    font-family: 'Cairo'; font-weight: 700; font-size: 12px;
+    padding: 4px 10px; border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .pill.teal { background: rgba(91,175,168,0.12); color: #5BAFA8; }
+  .pill.coral { background: rgba(226,125,96,0.12); color: #E27D60; }
+  .pill.yellow { background: rgba(232,177,74,0.12); color: #E8B14A; }
+  .pill.violet { background: rgba(168,123,157,0.14); color: #A87B9D; }
+  .ex-text { font-family: 'Tajawal'; font-size: 14px; color: #F5E6D3; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Semantic in use — استعمال دلالي</div>
+  <div class="stack">
+    <div class="ex"><span class="pill teal">تم ✓</span><span class="ex-text">المهمة مكتملة — Boss Fight اليوم ١</span></div>
+    <div class="ex"><span class="pill coral">تحذير</span><span class="ex-text">Context وصل ٧٠٪ — شغّل <code style="color:#E27D60;font-family:'JetBrains Mono'">/compact</code></span></div>
+    <div class="ex"><span class="pill yellow">اليوم</span><span class="ex-text">اليوم ٢ — الـ Prompts الذكيّة</span></div>
+    <div class="ex"><span class="pill violet"><code style="font-family:'JetBrains Mono'">/plan</code></span><span class="ex-text">أمر للتخطيط قبل البدء بالكود</span></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .stack { background: #1F1410; border-radius: 12px; border: 1px solid #3D2B23; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.06); }
+  .label2 { flex: 1; font-family: 'Tajawal'; font-size: 14px; }
+  .hex { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #C4A88E; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Foreground & Border — النصوص والحدود</div>
+  <div class="stack">
+    <div class="line"><div class="dot" style="background:#F5E6D3"></div><div class="label2" style="color:#F5E6D3">fg — نص أساسي</div><div class="hex">#F5E6D3</div></div>
+    <div class="line"><div class="dot" style="background:#C4A88E"></div><div class="label2" style="color:#C4A88E">fg-muted — نص ثانوي</div><div class="hex">#C4A88E</div></div>
+    <div class="line"><div class="dot" style="background:#876C5A"></div><div class="label2" style="color:#876C5A">fg-faint — placeholder</div><div class="hex">#876C5A</div></div>
+    <div class="line"><div class="dot" style="background:#3D2B23"></div><div class="label2" style="color:#C4A88E">border — حدّ 1px</div><div class="hex">#3D2B23</div></div>
+  </div>
+</div>
+</body>
+</html>

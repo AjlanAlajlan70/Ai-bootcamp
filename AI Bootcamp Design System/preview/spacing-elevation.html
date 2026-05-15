@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .row5 { display: flex; gap: 16px; }
+  .ex { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px; }
+  .surf { width: 100%; height: 80px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: 'Cairo'; font-weight: 700; font-size: 13px; }
+  .flat { background: #2B1D18; border: 1px solid #3D2B23; color: #F5E6D3; }
+  .ring { background: #2B1D18; border: 1px solid #3D2B23; color: #F5E6D3; box-shadow: 0 0 0 1px #5BAFA8; }
+  .pop  { background: #2B1D18; border: 1px solid #3D2B23; color: #F5E6D3; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+  .lbl { font-family: 'JetBrains Mono'; font-size: 11px; color: #C4A88E; text-align: center; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Elevation — العمق</div>
+  <div class="row5">
+    <div class="ex">
+      <div class="surf flat">عادي</div>
+      <div class="lbl">border<br>flat card</div>
+    </div>
+    <div class="ex">
+      <div class="surf ring">مكتمل</div>
+      <div class="lbl">ring teal<br>completed</div>
+    </div>
+    <div class="ex">
+      <div class="surf pop">عائم</div>
+      <div class="lbl">0 12 32 / 45%<br>nav, toast</div>
+    </div>
+  </div>
+  <div class="muted" style="font-size:13px">على الخلفية الداكنة، الحدّ هو الكرت. الظلال محصورة بالـ floating UI.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  body { background: #14080A; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; align-items: end; justify-items: center; }
+  .pose { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .pose img { image-rendering: pixelated; image-rendering: crisp-edges; width: 120px; height: 120px; }
+  .pose .name { font-family: 'Zanjabeel'; font-weight: 700; font-size: 14px; color: #F5E6D3; }
+  .pose .role { font-family: 'JetBrains Mono'; font-size: 11px; color: #C4A88E; text-align: center; line-height: 1.4; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Mascot — القط الرسمي</div>
+  <div class="grid">
+    <div class="pose">
+      <img src="../assets/mascot-idle.png" alt="">
+      <div class="name">عادي</div>
+      <div class="role">default · hero</div>
+    </div>
+    <div class="pose">
+      <img src="../assets/mascot-happy.png" alt="">
+      <div class="name">فرحان</div>
+      <div class="role">celebrate · boss complete</div>
+    </div>
+    <div class="pose">
+      <img src="../assets/mascot-surprised.png" alt="">
+      <div class="name">متفاجئ</div>
+      <div class="role">surprise · new feature</div>
+    </div>
+    <div class="pose">
+      <img src="../assets/mascot-sleeping.png" alt="">
+      <div class="name">نايم</div>
+      <div class="role">sleep · offline · 404</div>
+    </div>
+    <div class="pose">
+      <img src="../assets/mascot-sad.png" alt="">
+      <div class="name">زعلان</div>
+      <div class="role">error · debug prompt</div>
+    </div>
+    <div class="pose">
+      <img src="../assets/mascot-love.png" alt="">
+      <div class="name">حب</div>
+      <div class="role">success · milestone</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

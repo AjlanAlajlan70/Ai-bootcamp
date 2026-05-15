@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .boss {
+    background: #2B1D18;
+    border: 1px solid #3D2B23;
+    border-radius: 16px;
+    padding: 18px 20px;
+  }
+  .boss h { display: flex; align-items: center; gap: 8px; font-family:'Cairo'; font-weight: 700; font-size: 16px; color: #F5E6D3; margin-bottom: 12px; }
+  .boss h .tag { font-family:'Cairo'; font-weight:700; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: rgba(232,177,74,0.12); color: #E8B14A;}
+  .item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px dashed #3D2B23; font-family: 'Tajawal'; font-size: 14px; }
+  .item:last-child { border-bottom: none; }
+  .box {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 1.5px solid #5C4232; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .box.checked { background: #5BAFA8; border-color: #5BAFA8; color: #1F1410; font-weight: 800; }
+  .done-text { color: #876C5A; text-decoration: line-through; }
+  .progress { margin-top: 14px; display: flex; align-items: center; gap: 10px; }
+  .bar { flex: 1; height: 6px; background: #3D2B23; border-radius: 999px; overflow: hidden; }
+  .bar > div { height: 100%; background: #5BAFA8; width: 60%; border-radius: 999px; }
+  .pct { font-family: 'JetBrains Mono'; font-size: 12px; color: #5BAFA8; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Boss Fight checklist — قائمة المهام</div>
+  <div class="boss">
+    <div class="h">Boss Fight اليوم <span class="tag">٣ من ٥</span></div>
+    <div class="item"><div class="box checked">✓</div><div class="done-text">ثبّت Claude Code</div></div>
+    <div class="item"><div class="box checked">✓</div><div class="done-text">اكتب أوّل /plan</div></div>
+    <div class="item"><div class="box checked">✓</div><div class="done-text">شغّل المشروع محليًا</div></div>
+    <div class="item"><div class="box"></div><div>أضف صفحة «من نحن»</div></div>
+    <div class="item"><div class="box"></div><div>انشر المشروع على GitHub Pages</div></div>
+    <div class="progress"><div class="bar"><div></div></div><div class="pct">60%</div></div>
+  </div>
+</div>
+</body>
+</html>

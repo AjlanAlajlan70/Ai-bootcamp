@@ -1,0 +1,142 @@
+// DayPage — big idea + concepts + boss fight checklist.
+const { useState: useStateDay, useEffect: useEffectDay } = React;
+
+function ConceptItem({ concept, idx }) {
+  const [open, setOpen] = useStateDay(false);
+  return (
+    <Card>
+      <div className="concept">
+        <div className="concept__top">
+          <div>
+            <div className="concept__num">المفهوم {['١','٢','٣','٤','٥'][idx]}</div>
+            <h3 className="concept__title">{concept.title}</h3>
+          </div>
+          <button className="ghost-toggle" onClick={() => setOpen(!open)}>
+            {open ? 'إخفاء' : 'عرض التفاصيل'}
+            <Icon name={open ? 'chevronUp' : 'chevronDown'} size={14} />
+          </button>
+        </div>
+        <p className={`concept__summary ${open ? 'is-open' : ''}`}>{concept.summary}</p>
+        {open && (
+          <div className="concept__details">{concept.details}</div>
+        )}
+      </div>
+    </Card>
+  );
+}
+
+function BossFight({ day }) {
+  const key = `bootcamp:progress:day-${day.n}`;
+  const [checks, setChecks] = useStateDay(() => {
+    try {
+      const raw = localStorage.getItem(key);
+      const arr = raw ? JSON.parse(raw) : null;
+      if (Array.isArray(arr) && arr.length === day.boss.length) return arr;
+    } catch {}
+    return day.boss.map(() => false);
+  });
+
+  useEffectDay(() => {
+    localStorage.setItem(key, JSON.stringify(checks));
+    window.dispatchEvent(new Event('bootcamp:progress'));
+  }, [checks, key]);
+
+  const done = checks.filter(Boolean).length;
+  const total = checks.length;
+  const pct = Math.round((done / total) * 100);
+  const allDone = done === total;
+
+  const toggle = (i) => setChecks(checks.map((c, j) => j === i ? !c : c));
+
+  return (
+    <Card state={allDone ? 'done' : 'default'}>
+      <div className="boss">
+        <div className="boss__head">
+          <div className="boss__title">
+            <Icon name="sparkles" size={18} color="#FFC93C" />
+            Boss Fight اليوم
+          </div>
+          <Pill tone={allDone ? 'teal' : 'yellow'}>{done}/{total}</Pill>
+        </div>
+        <ul className="boss__list">
+          {day.boss.map((item, i) => (
+            <li key={i} className={`boss__item ${checks[i] ? 'is-done' : ''}`} onClick={() => toggle(i)}>
+              <div className={`boss__box ${checks[i] ? 'is-checked' : ''}`}>
+                {checks[i] && <Icon name="check" size={14} color="#15132A" />}
+              </div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className="boss__bar">
+          <div className="progress-bar"><div style={{ width: `${pct}%` }} /></div>
+          <span className="progress-bar__pct">{pct}%</span>
+        </div>
+        {allDone && (
+          <div className="boss__celebrate">
+            <Mascot size={56} pose="love" />
+            <div>
+              <div className="boss__celebrate-t">تماام! يوم {day.n} مكتمل.</div>
+              <div className="boss__celebrate-s">شدّ حيلك لليوم اللي بعده — أنت رايح صح.</div>
+            </div>
+          </div>
+        )}
+      </div>
+    </Card>
+  );
+}
+
+function DayPage({ n, go }) {
+  const data = window.BOOTCAMP_DATA;
+  const day = data.days.find((d) => d.n === n);
+  if (!day) return null;
+  const arabicN = ['١','٢','٣','٤'][n-1];
+
+  return (
+    <div className="page page--day">
+      <div className="day-header">
+        <button className="back-btn" onClick={() => go({ view: 'home' })}>
+          <Icon name="arrowRight" size={18} /> الرئيسية
+        </button>
+        <div className="day-header__meta">
+          <div className="day-header__kicker">اليوم {arabicN} من ٤</div>
+          <h1 className="day-header__title">{day.title}</h1>
+        </div>
+      </div>
+
+      <Card accent="teal">
+        <div className="big-idea">
+          <div className="big-idea__label">الفكرة الكبرى</div>
+          <p className="big-idea__text">{day.bigIdea}</p>
+        </div>
+      </Card>
+
+      <SectionHead kicker="المفاهيم" title="اللي بتتعلّمه اليوم" />
+      <div className="concepts">
+        {day.concepts.map((c, i) => <ConceptItem key={i} concept={c} idx={i} />)}
+      </div>
+
+      <BossFight day={day} />
+
+      {(() => {
+        const w = data.wisdom?.find((x) => x.day === n);
+        return w ? <WisdomCard wisdom={w} /> : null;
+      })()}
+
+      <div className="day-nav">
+        {n > 1 && (
+          <Button variant="ghost" icon="arrowRight" onClick={() => go({ view: 'day', n: n - 1 })}>
+            اليوم {['١','٢','٣','٤'][n-2]}
+          </Button>
+        )}
+        {n < 4 && (
+          <Button variant="primary" iconEnd="arrowLeft" onClick={() => go({ view: 'day', n: n + 1 })}>
+            اليوم {['١','٢','٣','٤'][n]}
+          </Button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+window.DayPage = DayPage;

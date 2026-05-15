@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .callout {
+    background: rgba(226,125,96,0.12);
+    border: 1px solid rgba(226,125,96,0.3);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .callout .bang {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: #E27D60; color: #1F1410;
+    font-family: 'Cairo'; font-weight: 800; font-size: 16px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .callout .t { color: #E27D60; font-family: 'Cairo'; font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .callout .body { color: #F5E6D3; font-family: 'Tajawal'; font-size: 14px; line-height: 1.6; }
+  .callout code { background: rgba(226,125,96,0.18); color: #E27D60; padding: 2px 6px; border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 13px; }
+  .ok {
+    margin-top: 12px;
+    background: rgba(91,175,168,0.12); border: 1px solid rgba(91,175,168,0.3);
+    border-radius: 14px; padding: 12px 14px;
+    color: #F5E6D3; font-family: 'Tajawal'; font-size: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ok .ck { color: #5BAFA8; font-weight: 800; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Inline callouts — تنبيهات سطريّة</div>
+  <div class="callout">
+    <div class="bang">!</div>
+    <div>
+      <div class="t">Context وصل ٧٠٪</div>
+      <div class="body">شغّل <code>/compact</code> الحين قبل ما تكمّل، عشان Claude يفضّل ذاكرته.</div>
+    </div>
+  </div>
+  <div class="ok"><span class="ck">✓</span>تم نسخ <code style="background:rgba(91,175,168,0.18);color:#5BAFA8;padding:1px 6px;border-radius:4px;font-family:'JetBrains Mono';font-size:13px">/plan</code></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+/* ============================================================
+   AI Bootcamp Design System — Colors & Type
+   معسكر بناء التطبيقات بالذكاء الاصطناعي
+   ============================================================ */
+
+/* --- Brand font: Zanjabeel (Arabic + Latin) -----------------
+   Provided by the bootcamp team. Replaces the earlier Cairo /
+   Tajawal stand-ins; the family is aliased to those names
+   below so any older CSS that says `font-family: 'Cairo'` or
+   `'Tajawal'` automatically falls through to Zanjabeel. */
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-Thin.otf') format('opentype');
+  font-weight: 100; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-ExtraLight.otf') format('opentype');
+  font-weight: 200; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-Light.otf') format('opentype');
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-Medium.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-SemiBold.otf') format('opentype');
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-ExtraBold.otf') format('opentype');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Zanjabeel';
+  src: url('fonts/Zanjabeel-Black.otf') format('opentype');
+  font-weight: 900; font-style: normal; font-display: swap;
+}
+
+/* Compatibility aliases — any pre-existing reference to 'Cairo'
+   or 'Tajawal' now resolves to Zanjabeel without rewriting cards. */
+@font-face {
+  font-family: 'Cairo';
+  src: url('fonts/Zanjabeel-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('fonts/Zanjabeel-ExtraBold.otf') format('opentype');
+  font-weight: 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('fonts/Zanjabeel-Medium.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url('fonts/Zanjabeel-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('fonts/Zanjabeel-Regular.otf') format('opentype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('fonts/Zanjabeel-Medium.otf') format('opentype');
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Tajawal';
+  src: url('fonts/Zanjabeel-Bold.otf') format('opentype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+/* Code stays on JetBrains Mono via Google Fonts (English-only mono;
+   Zanjabeel isn't monospaced). */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap');
+
+:root {
+  /* ---------- Color tokens — LOFI / RETRO PALETTE ---------- */
+  /* Inspired by warm lantern-lit study scenes — sunset, terracotta, dusty teal */
+  --bg:           #1F1410;  /* deep warm brown-black, like a dim room */
+  --surface:      #2B1D18;  /* warm dark brown card */
+  --surface-2:    #3D2B23;  /* raised / hover, coffee brown */
+  --surface-3:    #4F3A2E;  /* pressed, wood-grain dark */
+
+  --teal:         #5BAFA8;  /* dusty teal — primary, like jade lantern */
+  --teal-30:      rgba(91,175,168,0.30);
+  --teal-12:      rgba(91,175,168,0.14);
+
+  --coral:        #E27D60;  /* terracotta — warm warning, sunset glow */
+  --coral-12:     rgba(226,125,96,0.14);
+
+  --yellow:       #E8B14A;  /* lantern amber — current day, highlight */
+  --yellow-12:    rgba(232,177,74,0.14);
+
+  --violet:       #A87B9D;  /* dusty rose-mauve — commands, accent */
+  --violet-12:    rgba(168,123,157,0.14);
+
+  /* ---------- Foreground — warm cream tones ---------- */
+  --fg:           #F5E6D3;  /* cream body text, like old paper */
+  --fg-muted:     #C4A88E;  /* warm tan, captions */
+  --fg-faint:     #876C5A;  /* dusty brown, placeholders */
+
+  --border:       #3D2B23;  /* warm brown dividers */
+  --border-strong:#5C4232;
+
+  /* ---------- Type families ---------- */
+  --font-display: 'Zanjabeel', system-ui, sans-serif;
+  --font-body:    'Zanjabeel', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+  /* ---------- Type scale (semantic) ---------- */
+  --type-display-size: 40px;
+  --type-display-weight: 800;
+  --type-display-lh: 1.15;
+
+  --type-h1-size: 28px;
+  --type-h1-weight: 700;
+  --type-h1-lh: 1.2;
+
+  --type-h2-size: 22px;
+  --type-h2-weight: 700;
+  --type-h2-lh: 1.3;
+
+  --type-h3-size: 18px;
+  --type-h3-weight: 700;
+  --type-h3-lh: 1.35;
+
+  --type-body-size: 16px;
+  --type-body-weight: 400;
+  --type-body-lh: 1.7;
+
+  --type-body-strong-weight: 700;
+
+  --type-caption-size: 13px;
+  --type-caption-weight: 500;
+  --type-caption-lh: 1.4;
+
+  --type-code-size: 14px;
+  --type-code-weight: 500;
+
+  /* ---------- Spacing (8pt grid) ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 56px;
+  --s-10: 80px;
+
+  /* ---------- Radii ---------- */
+  --r-1: 8px;
+  --r-2: 12px;
+  --r-3: 16px;   /* default card */
+  --r-4: 20px;
+  --r-pill: 999px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-pop: 0 12px 32px rgba(0,0,0,0.45);
+  --shadow-ring-teal: 0 0 0 1px var(--teal);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast: 150ms;
+  --dur-base: 200ms;
+}
+
+/* ============================================================
+   Base element styling
+   ============================================================ */
+
+html { direction: rtl; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-lh);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--type-h1-size);
+  font-weight: var(--type-h1-weight);
+  line-height: var(--type-h1-lh);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-h2-size);
+  font-weight: var(--type-h2-weight);
+  line-height: var(--type-h2-lh);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--type-h3-size);
+  font-weight: var(--type-h3-weight);
+  line-height: var(--type-h3-lh);
+  margin: 0;
+}
+.display {
+  font-family: var(--font-display);
+  font-size: var(--type-display-size);
+  font-weight: var(--type-display-weight);
+  line-height: var(--type-display-lh);
+}
+.caption {
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  line-height: var(--type-caption-lh);
+  color: var(--fg-muted);
+}
+code, .code, kbd {
+  font-family: var(--font-mono);
+  font-size: var(--type-code-size);
+  font-weight: var(--type-code-weight);
+}

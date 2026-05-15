@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .concept {
+    background: #2B1D18;
+    border: 1px solid #3D2B23;
+    border-radius: 16px;
+    padding: 16px 18px;
+  }
+  .ch { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .ch .t { font-family: 'Cairo'; font-weight: 700; font-size: 16px; color: #F5E6D3; }
+  .ch .num { font-family: 'JetBrains Mono'; font-size: 12px; color: #C4A88E; }
+  .toggle {
+    background: rgba(91,175,168,0.12); color: #5BAFA8;
+    border: none; border-radius: 8px;
+    padding: 6px 10px;
+    font-family: 'Cairo'; font-weight: 700; font-size: 12px;
+    cursor: pointer; display: inline-flex; gap: 4px; align-items: center;
+  }
+  .body { font-family: 'Tajawal'; font-size: 14px; color: #C4A88E; line-height: 1.7; margin-top: 8px; }
+  .open .body { color: #F5E6D3; }
+  .details { margin-top: 12px; padding-top: 12px; border-top: 1px dashed #3D2B23; font-family: 'Tajawal'; font-size: 13px; color: #C4A88E; line-height: 1.7; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Concept expander — قسم قابل للتوسيع</div>
+  <div class="concept open">
+    <div class="ch">
+      <div><div class="num">المفهوم ٢</div><div class="t">الـ Context — ذاكرة Claude</div></div>
+      <button class="toggle">إخفاء ↑</button>
+    </div>
+    <div class="body">Claude يتذكّر اللي قلته بحدّ معيّن. لمّا الذاكرة تمتلئ، يبدأ ينسى أوّل الكلام.</div>
+    <div class="details">جرّب <code style="font-family:'JetBrains Mono';color:#A87B9D;background:rgba(168,123,157,0.14);padding:1px 4px;border-radius:3px">/context</code> عشان تشوف وش محمّل، و<code style="font-family:'JetBrains Mono';color:#A87B9D;background:rgba(168,123,157,0.14);padding:1px 4px;border-radius:3px">/compact</code> عشان تقلّصه.</div>
+  </div>
+</div>
+</body>
+</html>

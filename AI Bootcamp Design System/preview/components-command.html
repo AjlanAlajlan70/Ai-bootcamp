@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .cmd {
+    background: #2B1D18;
+    border: 1px solid #3D2B23;
+    border-radius: 16px;
+    padding: 16px 18px;
+  }
+  .cmd-head { display: flex; align-items: center; gap: 10px; justify-content: space-between; margin-bottom: 8px; }
+  .cmd-name {
+    font-family: 'JetBrains Mono';
+    font-size: 16px; font-weight: 500;
+    color: #A87B9D;
+    background: rgba(168,123,157,0.14);
+    padding: 4px 10px; border-radius: 8px;
+    direction: ltr;
+  }
+  .copy-btn {
+    font-family: 'Cairo'; font-weight: 700; font-size: 12px;
+    padding: 6px 12px; border-radius: 8px;
+    border: 1px solid #3D2B23; background: transparent; color: #F5E6D3;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .cmd-desc { font-family: 'Tajawal'; font-size: 14px; color: #F5E6D3; line-height: 1.7; }
+  .cmd-tag { font-family: 'Cairo'; font-weight: 700; font-size: 11px; color: #C4A88E; margin-top: 8px; display:flex; gap:6px; align-items:center; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Command card — كرت أمر</div>
+  <div class="cmd">
+    <div class="cmd-head">
+      <div class="cmd-name">/plan</div>
+      <button class="copy-btn">⧉ نسخ</button>
+    </div>
+    <div class="cmd-desc">خلّي Claude يكتب لك خطّة قبل ما يبدأ بالكود. أوّل أمر تستخدمه في كل مهمّة.</div>
+    <div class="cmd-tag">التخطيط · 4 أوامر</div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="_card.css">
+<style>
+  .stack { display: flex; flex-direction: column; gap: 12px; }
+  .card {
+    background: #2B1D18;
+    border: 1px solid #3D2B23;
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative;
+  }
+  .card .t { font-family: 'Cairo'; font-weight: 700; font-size: 17px; color: #F5E6D3; }
+  .card .s { font-family: 'Tajawal'; font-size: 14px; color: #C4A88E; }
+  .card.current { border-inline-start: 2px solid #E8B14A; padding-inline-start: 16px; }
+  .card.done { box-shadow: 0 0 0 1px #5BAFA8; }
+  .check {
+    position: absolute; inset-block-start: 12px; inset-inline-start: 14px;
+    background: rgba(91,175,168,0.18); color: #5BAFA8;
+    font-family: 'Cairo'; font-weight: 700; font-size: 11px;
+    padding: 3px 8px; border-radius: 999px;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="label">Card states — حالات الكرت</div>
+  <div class="stack">
+    <div class="card">
+      <div class="t">اليوم ٣ — Boss Fights</div>
+      <div class="s">حالة عادية. حدّ ١px، خلفية surface.</div>
+    </div>
+    <div class="card current">
+      <div class="t">اليوم ٢ — الـ Prompts الذكيّة</div>
+      <div class="s">شريط أصفر داخلي يدلّ على «الحالي».</div>
+    </div>
+    <div class="card done">
+      <div class="t">اليوم ١ — أساسيات Claude Code</div>
+      <div class="s">حلقة teal كاملة + شارة «تم».</div>
+      <span class="check">تم ✓</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
