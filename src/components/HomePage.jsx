@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Card, Pill, Mascot, SectionHead } from './primitives.jsx';
 import { BOOTCAMP_DATA, readDayProgress } from '../data.js';
+import lockIcon from '../assets/lock.svg';
 
 const ARABIC_N = ['١', '٢', '٣', '٤'];
 
@@ -20,6 +21,7 @@ export function HomePage({ go }) {
 
   let currentN = 1;
   for (const d of data.days) {
+    if (d.locked) continue;
     const p = readDayProgress(d.n);
     if (p.total === 0 || p.done < p.total) { currentN = d.n; break; }
     currentN = d.n + 1;
@@ -31,7 +33,7 @@ export function HomePage({ go }) {
         <div className="hero__copy">
           <div className="hero__kicker">معسكر · 4 أيام · KSU</div>
           <h1 className="hero__title">أربعة أيام. مشروع واحد. تطبيق تبنيه بنفسك.</h1>
-          <p className="hero__sub">حتى لو ما كتبت سطر كود من قبل — اتبع الخطوات وبتطلع بتطبيق شغّال.</p>
+          <p className="hero__sub">حتى لو ما كتبت سطر كود من قبل، اتبع الخطوات وبتطلع بتطبيق شغّال.</p>
         </div>
         <div className="hero__mascot-row">
           <Button variant="primary" iconEnd="arrowLeft" onClick={() => go({ view: 'day', n: currentN })}>
@@ -79,6 +81,23 @@ export function HomePage({ go }) {
         </SectionHead>
         <div className="days__grid">
           {data.days.map((d) => {
+            if (d.locked) {
+              return (
+                <Card key={d.n}>
+                  <div className="day-card day-card--locked" aria-disabled="true">
+                    <div className="day-card__top">
+                      <div className="day-card__n">اليوم {ARABIC_N[d.n - 1]}</div>
+                      <Pill tone="violet">مقفل</Pill>
+                    </div>
+                    <h3 className="day-card__title">{d.title}</h3>
+                    <p className="day-card__idea">يفتح لاحقًا، تابع المعسكر.</p>
+                    <div className="day-card__lock">
+                      <img src={lockIcon} alt="" className="day-card__lock-icon" />
+                    </div>
+                  </div>
+                </Card>
+              );
+            }
             const p = readDayProgress(d.n);
             const pct = p.total ? Math.round((p.done / p.total) * 100) : 0;
             const state = p.total && p.done === p.total ? 'done'

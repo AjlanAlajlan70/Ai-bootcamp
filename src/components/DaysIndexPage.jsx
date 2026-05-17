@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Pill } from './primitives.jsx';
 import { BOOTCAMP_DATA, readDayProgress } from '../data.js';
+import lockIcon from '../assets/lock.svg';
 
 const ARABIC_N = ['١', '٢', '٣', '٤'];
 
@@ -20,6 +21,7 @@ export function DaysIndexPage({ go }) {
 
   let currentN = 1;
   for (const d of data.days) {
+    if (d.locked) continue;
     const p = readDayProgress(d.n);
     if (p.total === 0 || p.done < p.total) { currentN = d.n; break; }
     currentN = d.n + 1;
@@ -34,6 +36,23 @@ export function DaysIndexPage({ go }) {
       </header>
       <div className="days__grid">
         {data.days.map((d) => {
+          if (d.locked) {
+            return (
+              <Card key={d.n}>
+                <div className="day-card day-card--locked" aria-disabled="true">
+                  <div className="day-card__top">
+                    <div className="day-card__n">اليوم {ARABIC_N[d.n - 1]}</div>
+                    <Pill tone="violet">مقفل</Pill>
+                  </div>
+                  <h3 className="day-card__title">{d.title}</h3>
+                  <p className="day-card__idea">يفتح لاحقًا، تابع المعسكر.</p>
+                  <div className="day-card__lock">
+                    <img src={lockIcon} alt="" className="day-card__lock-icon" />
+                  </div>
+                </div>
+              </Card>
+            );
+          }
           const p = readDayProgress(d.n);
           const pct = p.total ? Math.round((p.done / p.total) * 100) : 0;
           const state = p.total && p.done === p.total ? 'done'

@@ -1,9 +1,91 @@
 import { useEffect, useState } from 'react';
-import { Button, Card, Pill, Icon, Mascot, WisdomCard, SectionHead } from './primitives.jsx';
+import { Button, Card, Pill, Icon, Mascot, WisdomCard, SectionHead, CopyButton } from './primitives.jsx';
 import { BOOTCAMP_DATA } from '../data.js';
 
 const ARABIC_N = ['١', '٢', '٣', '٤'];
-const CONCEPT_N = ['١', '٢', '٣', '٤', '٥'];
+const CONCEPT_N = ['١', '٢', '٣', '٤', '٥', '٦', '٧'];
+const MARKERS = { check: '✓', cross: '✗', bullet: '•' };
+
+function DetailListItem({ item, marker }) {
+  const obj = typeof item === 'string' ? { text: item } : item;
+  return (
+    <li className={`detail-list__item detail-list__item--${marker}`}>
+      <span className="detail-list__marker" aria-hidden="true">{MARKERS[marker]}</span>
+      <div className="detail-list__body">
+        <span className="detail-list__text">{obj.text}</span>
+        {obj.sub && <span className="detail-list__sub">{obj.sub}</span>}
+      </div>
+    </li>
+  );
+}
+
+function DetailBlock({ block }) {
+  switch (block.type) {
+    case 'p':
+      return <p className="detail-p">{block.text}</p>;
+    case 'list': {
+      const m = block.marker || 'bullet';
+      return (
+        <ul className={`detail-list detail-list--${m}`}>
+          {block.items.map((it, i) => <DetailListItem key={i} item={it} marker={m} />)}
+        </ul>
+      );
+    }
+    case 'subsection':
+      return (
+        <div className="detail-section">
+          <div className="detail-section__title">{block.title}</div>
+          {block.blocks.map((b, i) => <DetailBlock key={i} block={b} />)}
+        </div>
+      );
+    case 'callout':
+      return (
+        <div className={`callout callout--${block.tone || 'coral'}`}>
+          <div className="callout__bang">!</div>
+          <div>
+            {block.title && <div className="callout__t">{block.title}</div>}
+            <div className="callout__b">{block.text}</div>
+          </div>
+        </div>
+      );
+    case 'code':
+      return (
+        <div className="detail-code">
+          <div className="detail-code__head">
+            {block.label && <span className="detail-code__label">{block.label}</span>}
+            <CopyButton text={block.body} />
+          </div>
+          <pre className="prompt__body detail-code__body">{block.body}</pre>
+        </div>
+      );
+    case 'links':
+      return (
+        <ul className="detail-links">
+          {block.items.map((l, i) => (
+            <li key={i} className="detail-links__row">
+              <a className="detail-links__a" href={l.url} target="_blank" rel="noreferrer">
+                <Icon name="arrowLeft" size={12} />
+                <span>{l.label}</span>
+              </a>
+              {l.note && <span className="detail-links__note">{l.note}</span>}
+            </li>
+          ))}
+        </ul>
+      );
+    default:
+      return null;
+  }
+}
+
+function ConceptDetails({ details }) {
+  if (typeof details === 'string') return <p className="detail-p">{details}</p>;
+  if (!Array.isArray(details)) return null;
+  return (
+    <div className="detail-stack">
+      {details.map((b, i) => <DetailBlock key={i} block={b} />)}
+    </div>
+  );
+}
 
 function ConceptItem({ concept, idx }) {
   const [open, setOpen] = useState(false);
@@ -22,7 +104,9 @@ function ConceptItem({ concept, idx }) {
         </div>
         <p className={`concept__summary ${open ? 'is-open' : ''}`}>{concept.summary}</p>
         {open && (
-          <div className="concept__details">{concept.details}</div>
+          <div className="concept__details">
+            <ConceptDetails details={concept.details} />
+          </div>
         )}
       </div>
     </Card>
@@ -81,7 +165,7 @@ function BossFight({ day }) {
             <Mascot size={56} pose="love" />
             <div>
               <div className="boss__celebrate-t">تماام! يوم {day.n} مكتمل.</div>
-              <div className="boss__celebrate-s">شدّ حيلك لليوم اللي بعده — أنت رايح صح.</div>
+              <div className="boss__celebrate-s">شدّ حيلك لليوم اللي بعده، أنت رايح صح.</div>
             </div>
           </div>
         )}
@@ -120,17 +204,17 @@ export function DayPage({ n, go }) {
         {day.concepts.map((c, i) => <ConceptItem key={i} concept={c} idx={i} />)}
       </div>
 
-      <BossFight day={day} />
+      <BossFight key={day.n} day={day} />
 
       {wisdom && <WisdomCard wisdom={wisdom} />}
 
       <div className="day-nav">
-        {n > 1 && (
+        {n > 1 && !data.days.find((d) => d.n === n - 1)?.locked && (
           <Button variant="ghost" icon="arrowRight" onClick={() => go({ view: 'day', n: n - 1 })}>
             اليوم {ARABIC_N[n - 2]}
           </Button>
         )}
-        {n < 4 && (
+        {n < 4 && !data.days.find((d) => d.n === n + 1)?.locked && (
           <Button variant="primary" iconEnd="arrowLeft" onClick={() => go({ view: 'day', n: n + 1 })}>
             اليوم {ARABIC_N[n]}
           </Button>

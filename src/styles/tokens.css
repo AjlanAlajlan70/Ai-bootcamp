@@ -1,5 +1,5 @@
 /* ============================================================
-   AI Bootcamp Design System — Colors & Type
+   AI Bootcamp Design System - Colors & Type
    معسكر بناء التطبيقات بالذكاء الاصطناعي
    ============================================================ */
 
@@ -51,7 +51,7 @@
   font-weight: 900; font-style: normal; font-display: swap;
 }
 
-/* Compatibility aliases — older references to Cairo/Tajawal resolve to Zanjabeel. */
+/* Compatibility aliases - older references to Cairo/Tajawal resolve to Zanjabeel. */
 @font-face {
   font-family: 'Cairo';
   src: url('./fonts/Zanjabeel-Bold.otf') format('opentype');
@@ -89,7 +89,7 @@
 }
 
 :root {
-  /* ---------- Color tokens — LOFI / RETRO PALETTE ---------- */
+  /* ---------- Color tokens - LOFI / RETRO PALETTE ---------- */
   --bg:           #1F1410;
   --surface:      #2B1D18;
   --surface-2:    #3D2B23;

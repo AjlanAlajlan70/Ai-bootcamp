@@ -1,5 +1,5 @@
 /* ============================================================
-   Workshop Companion Site — DESKTOP LOFI OFFICE
+   Workshop Companion Site - DESKTOP LOFI OFFICE
    The browser window IS the desk. Around it, a pixel office scene.
    ============================================================ */
 
@@ -49,7 +49,7 @@ body {
 }
 
 /* ============================================================
-   MONITOR SCREEN — two modes
+   MONITOR SCREEN - two modes
    ============================================================ */
 .monitor-wrap {
   position: fixed;
@@ -64,7 +64,7 @@ body {
   pointer-events: none;
 }
 
-/* OFFICE MODE — screen overlays the monitor in the image */
+/* OFFICE MODE - screen overlays the monitor in the image */
 .monitor-wrap.is-office {
   padding: 0;
 }
@@ -114,7 +114,7 @@ body {
 .monitor-wrap.is-office .boot-screen__credit { font-size: 10px; font-weight: 800; margin-top: 4px; color: var(--fg); opacity: 0.9; }
 .monitor-wrap.is-office .boot-screen__channel { font-size: 7px; top: 6px; right: 10px; letter-spacing: 0.15em; }
 
-/* APP MODE — full-viewport monitor */
+/* APP MODE - full-viewport monitor */
 .monitor-wrap:not(.is-office) { pointer-events: auto; }
 .monitor {
   width: 100%;
@@ -358,7 +358,7 @@ body:has(.monitor-wrap:not(.is-office)) .office {
 .top-bar__power:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 0 var(--bg); }
 
 /* ============================================================
-   Boot-screen window controls — fake title-bar chrome
+   Boot-screen window controls - fake title-bar chrome
    ============================================================ */
 .boot-screen__titlebar {
   position: absolute;
@@ -390,7 +390,7 @@ body:has(.monitor-wrap:not(.is-office)) .office {
 .win-btn:active { transform: translate(1px, 1px); box-shadow: 0.5px 0.5px 0 0 var(--bg); }
 .win-btn--close { background: var(--coral); color: var(--bg); }
 .win-btn--close:hover { background: #E89578; }
-/* Office-mode shrink — even smaller inside the small office monitor */
+/* Office-mode shrink - even smaller inside the small office monitor */
 .monitor-wrap.is-office .boot-screen__titlebar { top: 7px; left: 24px; right: auto; gap: 3px; }
 .monitor-wrap.is-office .win-btn { width: 12px; height: 10px; border-width: 1px; box-shadow: 1px 1px 0 0 var(--bg); }
 .monitor-wrap.is-office .win-btn svg { width: 5px; height: 5px; }
@@ -971,6 +971,12 @@ body:has(.monitor-wrap:not(.is-office)) .office {
   display: inline-block;
 }
 .callout__b code { background: rgba(255,92,92,0.18); color: var(--coral); }
+.callout--coral .callout__b code,
+.callout--coral .callout__t code {
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--bg);
+}
 
 @keyframes reveal {
   from { opacity: 0; transform: translateY(-4px); }
@@ -1118,7 +1124,31 @@ body:has(.monitor-wrap:not(.is-office)) .office {
   max-height: 200px;
   overflow-y: auto;
   box-shadow: 3px 3px 0 0 rgba(0,0,0,0.4);
+  scrollbar-width: thin;
+  scrollbar-color: var(--teal) var(--bg);
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
 }
+.prompt__body::-webkit-scrollbar {
+  width: 10px;
+  background: var(--bg);
+}
+.prompt__body::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-left: 2px solid var(--fg);
+  box-shadow: inset 0 0 0 1px rgba(245,230,211,0.06);
+}
+.prompt__body::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border: 2px solid var(--fg);
+  border-radius: 0;
+  box-shadow: inset 1px 1px 0 0 rgba(245,230,211,0.35),
+              inset -1px -1px 0 0 rgba(0,0,0,0.35);
+}
+.prompt__body::-webkit-scrollbar-thumb:hover { background: var(--coral); }
+.prompt__body::-webkit-scrollbar-button { display: none; height: 0; width: 0; }
+.prompt__body::-webkit-scrollbar-corner { background: var(--bg); }
 
 /* ============================================================
    Buttons
@@ -1209,7 +1239,7 @@ body:has(.monitor-wrap:not(.is-office)) .office {
 .ghost-toggle:active { transform: translate(1px, 1px); box-shadow: 1px 1px 0 0 rgba(0,0,0,0.5); }
 
 /* ============================================================
-   Responsive — strip the CRT/office chrome on mobile and let the
+   Responsive - strip the CRT/office chrome on mobile and let the
    site scroll naturally inside the viewport.
    ============================================================ */
 @media (max-width: 900px) {
@@ -1301,4 +1331,82 @@ body:has(.monitor-wrap:not(.is-office)) .office {
   .page-header__title { font-size: 20px; }
   .cmd__name { font-size: 14px; padding: 3px 8px; }
   .boss__item { font-size: 13.5px; }
+}
+
+/* ---- Rich concept details (Day 1) ---- */
+.detail-stack       { display: flex; flex-direction: column; gap: 12px; }
+.detail-p           { margin: 0; font-family: var(--font-body); font-size: 13.5px;
+                      line-height: 1.7; color: var(--fg); }
+
+.detail-section     { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.detail-section__title {
+  font-family: var(--font-display); font-weight: 800; font-size: 13px;
+  color: var(--yellow); letter-spacing: 0.02em;
+  padding-bottom: 6px;
+  border-bottom: 2px dashed var(--border-strong);
+}
+
+.detail-list       { list-style: none; margin: 0; padding: 0;
+                     display: flex; flex-direction: column; gap: 7px; }
+.detail-list__item { display: flex; gap: 10px; align-items: flex-start;
+                     font-family: var(--font-body); font-size: 13.5px;
+                     line-height: 1.6; color: var(--fg); }
+.detail-list__marker {
+  flex-shrink: 0; width: 18px; text-align: center;
+  font-family: var(--font-mono); font-weight: 700; font-size: 14px; line-height: 1.55;
+}
+.detail-list__item--check  .detail-list__marker { color: var(--teal); }
+.detail-list__item--cross  .detail-list__marker { color: var(--coral); }
+.detail-list__item--bullet .detail-list__marker { color: var(--violet); }
+.detail-list__body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.detail-list__text { color: var(--fg); }
+.detail-list__sub  { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+
+.detail-code       { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
+.detail-code__head { display: flex; justify-content: space-between; align-items: center;
+                     gap: 10px; flex-wrap: wrap; }
+.detail-code__label {
+  font-family: var(--font-display); font-weight: 700; font-size: 11.5px;
+  color: var(--violet); letter-spacing: 0.04em; text-transform: uppercase;
+}
+.detail-code__body { max-height: 320px; direction: ltr; text-align: left; }
+
+.detail-links      { list-style: none; margin: 0; padding: 0;
+                     display: flex; flex-direction: column; gap: 8px; }
+.detail-links__row { display: flex; flex-direction: column; gap: 3px;
+                     padding: 9px 11px; border: 2px dashed var(--border-strong);
+                     background: var(--surface); }
+.detail-links__a {
+  font-family: var(--font-mono); font-weight: 700; font-size: 13px;
+  color: var(--teal); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 6px;
+  direction: ltr; align-self: flex-start;
+}
+.detail-links__a:hover { text-decoration: underline; }
+.detail-links__note { font-family: var(--font-body); font-size: 12.5px;
+                      color: var(--fg-muted); line-height: 1.5; }
+
+/* ---- Locked day cards ---- */
+.day-card--locked {
+  position: relative;
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+  filter: saturate(0.5);
+}
+.day-card--locked .day-card__title,
+.day-card--locked .day-card__idea {
+  color: var(--fg-muted);
+}
+.day-card__lock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0 6px;
+}
+.day-card__lock-icon {
+  width: 72px;
+  height: 72px;
+  image-rendering: pixelated;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.4));
 }

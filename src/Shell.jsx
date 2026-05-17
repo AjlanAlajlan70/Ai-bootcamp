@@ -5,6 +5,7 @@ import { DaysIndexPage } from './components/DaysIndexPage.jsx';
 import { DayPage } from './components/DayPage.jsx';
 import { CommandsPage } from './components/CommandsPage.jsx';
 import { PromptsPage } from './components/PromptsPage.jsx';
+import { BOOTCAMP_DATA } from './data.js';
 import logo from './assets/AjlanLogo.jpg';
 
 const TABS = [
@@ -142,7 +143,11 @@ export function Shell() {
   let body = null;
   if (route.view === 'home') body = <HomePage go={go} />;
   else if (route.view === 'days') body = <DaysIndexPage go={go} />;
-  else if (route.view === 'day') body = <DayPage n={route.n} go={go} />;
+  else if (route.view === 'day') {
+    const day = BOOTCAMP_DATA.days.find((d) => d.n === route.n);
+    if (!day || day.locked) body = <HomePage go={go} />;
+    else body = <DayPage n={route.n} go={go} />;
+  }
   else if (route.view === 'commands') body = <CommandsPage />;
   else if (route.view === 'prompts') body = <PromptsPage />;
 

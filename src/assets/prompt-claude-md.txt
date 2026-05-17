@@ -1,0 +1,183 @@
+Help me plan a new project from scratch and generate a
+CLAUDE.md file I can drop into the project root.
+
+Start by asking me everything you need to know about the
+project. Don't assume anything. After we go through it all,
+recommend the stack, architecture, and identity, then output
+the CLAUDE.md.
+
+Context about me:
+- I use AI tools (Claude Code, Cursor, etc.) as my primary
+  coding assistant. Every choice you recommend MUST be a
+  stack that AI tools work well with. Verify this on the web.
+  Prefer technologies with strong docs, large community, and
+  proven AI-coding compatibility.
+- The CLAUDE.md you produce will guide every AI session on
+  this codebase, so make it precise and copy-paste ready.
+
+Requirements:
+1. Monorepo (everything in one repo).
+2. Search the web before recommending. No outdated knowledge.
+3. Modern, stable, production-ready tech. No experimental
+   libraries.
+4. Use proven frameworks. Never build from scratch.
+5. Security first. Secure defaults everywhere.
+6. Scalable in case the project grows.
+7. STAY FLEXIBLE. Not every project needs a backend, database,
+   or auth. Adapt to my actual answers. Don't assume a
+   full-stack web app by default.
+
+Before recommending anything, ask me about:
+
+A) Project concept:
+- The core idea and the problem it solves
+- Project name (or help me brainstorm one)
+- One-line description of what it does
+- Target audience and who will actually use it
+- Why this project exists, what success looks like
+
+B) Technical context:
+- My programming experience and skill level
+- Type of project (web, mobile, desktop, hybrid)
+- Multiple concurrent users at once?
+- Real-time features needed (chat, notifications, presence)?
+- Expected user volume in year one
+
+C) Identity & visual direction:
+- Tone (formal, playful, technical, cozy, etc.)
+- Color palette. Ask for the primary color first, then
+  secondary, then accent. Or suggest a palette that fits
+  the tone.
+- Typography. Heading font and body font preference.
+- Visual style / aesthetic. Options like minimal flat,
+  glassmorphism, neumorphism, brutalist, pixel art, retro,
+  hand-drawn, illustrated, etc. Suggest a few that fit if
+  I'm unsure.
+
+DO NOT ask me about deployment. Assume the project will
+target a PaaS (Railway, Render, Fly.io, Vercel, or similar)
+and just write that into the CLAUDE.md as context.
+
+Once you have my answers, recommend (skip what doesn't apply):
+- Frontend stack (framework, styling, state management)
+- Backend stack (language, framework, ORM, auth)
+- Database (SQL vs NoSQL, which provider, why)
+- Architecture pattern (monolith, modular monolith,
+  microservices). Justify why it fits MY case, not generic
+  advice.
+- File/folder structure for the monorepo.
+
+For each choice, briefly explain trade-offs and why you
+picked it over alternatives.
+
+============================================================
+OUTPUT: CLAUDE.md
+============================================================
+After the discussion, produce a single fenced markdown block
+containing the full CLAUDE.md. Only include sections that
+apply to my project. Skip irrelevant ones (e.g. no database
+section if there's no database).
+
+Use this structure as a guide. Keep it condensed and direct,
+no fluff:
+
+# [Project Name]
+
+## Overview
+One-line description. What problem it solves. Target audience.
+
+## Identity
+- Color palette (primary, secondary, accent) with hex values
+- Typography (heading font, body font)
+- Visual style / aesthetic (e.g. minimal flat, pixel art)
+- Tone of voice
+
+## Stack
+List each chosen technology with a one-line "why".
+
+## Architecture
+- Pattern and one-line justification.
+- Monorepo folder layout. Feature-scoped folders live inside
+  a `features/` folder, named by domain (e.g.
+  `features/lists/`, `features/submissions/`,
+  `features/users/`). Cross-cutting concerns sit in their
+  own shared folders (`db/`, `auth/`, `lib/`, `config/`).
+  Types live in one place. Never duplicate them across apps.
+
+## Deployment
+This project targets a PaaS (Railway, Render, Fly.io,
+Vercel, or similar). No self-managed servers or custom
+infrastructure-as-code.
+
+## Working principles for AI agents
+- Confirm requirements before assuming. If ambiguous, ask
+  before coding rather than guess.
+- Explain non-obvious decisions when suggesting changes.
+  Routine edits don't need narration.
+- Surface uncertainty. Flag tradeoffs and unknowns
+  explicitly instead of papering over them.
+- Match existing patterns. Mirror recent files in the same
+  folder rather than inventing new shapes.
+- Clean up when you touch a file. Remove unused imports,
+  vars, params, and dead code.
+- Use pnpm only. Reject npm, yarn, bun, or anything else.
+- Block packages whose latest version was published less
+  than 7 days ago. Wait for the dust to settle before
+  using brand-new releases. Enforce this by setting
+  `minimumReleaseAge: 10080` (minutes) in
+  `pnpm-workspace.yaml`, or `minimum-release-age=10080`
+  in `.npmrc`.
+
+## Environment & secrets
+- All secrets in env vars. Never commit `.env`.
+- Validate env at startup. Fail fast if anything is missing
+  or malformed.
+- Keep a thorough, well-maintained `.gitignore` from day
+  one. Cover `.env`, build outputs, dependencies, caches,
+  IDE/OS files, logs, and any credentials. Audit it before
+  every push.
+
+## Code standards
+- TypeScript strict mode. No `any` without a written reason.
+- Small, focused functions. Meaningful names.
+- Reusable components in a shared folder. Write once, not
+  per consumer.
+
+## Database & queries  [include only if a DB is used]
+- Schema in one place. Use an ORM (Drizzle, Prisma, etc.).
+- Paginate every list endpoint. Default 25, max 100.
+  Cursor-based for public feeds, offset for admin tables.
+- Index every column used in WHERE / ORDER BY / JOIN.
+  Composite indexes most-selective first.
+- Select only the columns you need. Skip heavy text/JSON
+  unless required.
+- Avoid N+1. Use relation loaders or batch lookups.
+- Parameterize all writes. Wrap multi-statement writes in
+  transactions.
+- Connection pooling on. Least-privilege DB user in prod.
+
+## Auth & permissions  [include only if auth is used]
+- Use Better Auth for all auth flows (sessions, password
+  reset, OAuth, etc.).
+- Cookies: HttpOnly, Secure, SameSite=Strict.
+- RBAC enforced on the server, not just client-side.
+- Never return password hashes, tokens, or internal IDs the
+  client doesn't need.
+
+## Input handling  [include only if the app accepts user input]
+- Validate every input server-side (TypeBox, Zod, etc.).
+  Client validation is UX only.
+- Sanitize HTML before storing or rendering (XSS).
+- File uploads: validate MIME type, size cap, and content.
+  Store in object storage (R2, S3).
+- Rate-limit submission endpoints aggressively.
+
+## Hardening
+- Security headers via helmet or framework equivalent. Set
+  CSP explicitly for the sources the app actually uses.
+- HTTPS-only in production. Redirect HTTP at the edge.
+- Never log secrets, PII, tokens, session IDs, or full
+  request/response bodies.
+- Encrypt sensitive fields at rest when applicable.
+- Keep dependencies current (Renovate / Dependabot).
+- Never use `eval()` or dynamic code execution.
